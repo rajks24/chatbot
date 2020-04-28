@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "deploy": "serverless deploy"
   },
   "dependencies": {
     "chalk": "~1.0.0",
