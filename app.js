@@ -15,7 +15,7 @@ var pack = require("./package.json");
 var path = require("path");
 
 /* Config */
-var port = process.env.PORT || 3000;
+var port = utils.normalizePort(process.env.PORT || config.port);
 //utils.normalizePort(process.env.PORT || config.port);
 var app = express();
 var server;
@@ -35,8 +35,10 @@ var uid = 1;
 var alphanumeric = /^\w+$/;
 
 if (config.readline.use) {
+  console.log("config is read" + config.readline.use);
   var rl = readline.createInterface(process.stdin, process.stdout);
   rl.setPrompt(config.readline.prompt);
+  rl.setPrompt("XXXX=>");
   rl.prompt();
 }
 
@@ -477,10 +479,25 @@ function readLine() {
     }
 
     rl.prompt();
-  }).on("close", function () {
-    log("stop", "Shutting down\n");
-    process.exit(0);
-  });
+    setTimeout(function () {
+      console.log("console is prompted..");
+    }, 2000);
+    rl.prompt();
+  })
+    .on("close", function () {
+      console.log("now we're done reading the file");
+      //log("stop", "Shutting down\n");
+      //process.exit(0);
+    })
+    .on("SIGINT", function () {
+      console.log("Caught interrupt signal");
+
+      process.exit();
+    })
+    .on("error", function (err) {
+      // handle errors here
+      console.log(err);
+    });
 }
 
 if (!config.ssl.use) {
@@ -496,11 +513,14 @@ if (!config.ssl.use) {
   server = https.createServer(opt, app);
 }
 
-server.listen(port);
+console.log(" [*] Listening on 0.0.0.0:" + port);
+//server.listen(port);
+server.listen(port, "0.0.0.0");
 server.on("error", onError);
 server.on("listening", onListening);
 
 function onError(error) {
+  console.log(error.message);
   if (error.syscall !== "listen") {
     throw error;
   }
@@ -524,8 +544,12 @@ function onError(error) {
 }
 
 function onListening() {
+  console.log(" [.] open event received");
   var addr = server.address();
+
+  console.log("addr :" + JSON.stringify(addr));
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  console.log("bind : " + bind);
   log("start", "Listening at " + bind);
 }
 
