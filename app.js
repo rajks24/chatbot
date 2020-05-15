@@ -35,10 +35,10 @@ var uid = 1;
 var alphanumeric = /^\w+$/;
 
 if (config.readline.use) {
-  console.log("config is read" + config.readline.use);
+  //console.log("config is read" + config.readline.use);
   var rl = readline.createInterface(process.stdin, process.stdout);
   rl.setPrompt(config.readline.prompt);
-  rl.setPrompt("XXXX=>");
+  //rl.setPrompt("XXXX=>");
   rl.prompt();
 }
 
@@ -554,3 +554,5 @@ function onListening() {
 }
 
 chat.installHandlers(server, { prefix: "/socket", log: function () {} });
+
+module.exports = app;
