@@ -7,6 +7,7 @@ commonLabels:
 
 resources:
 - service.yml
+- ingress.yml
 - deployment.yml
 
 images:
@@ -27,3 +28,9 @@ patchesJSON6902:
     kind: Service
     name: app
   path: service_patch.yml
+- target:
+    group: networking.k8s.io
+    version: v1beta1
+    kind: Ingress
+    name: app
+  path: ingress_patch.yml
