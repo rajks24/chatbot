@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: chatbot
+  name: chatbot-app
+  namespace: sit
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+  selector:
+    app: chatbot
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: chatbot
+  name: chatbot-app
+  namespace: sit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chatbot
+  template:
+    metadata:
+      labels:
+        app: chatbot
+    spec:
+      containers:
+      - image: txconsole/chatbot:11
+        name: chatbot-app
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: regcred
