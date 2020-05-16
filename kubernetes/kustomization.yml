@@ -11,8 +11,8 @@ resources:
 
 images:
 - name: appImage
-  newName: my.image.registry/nginx
-  newTag: 1.4.0
+  newName: txconsole/chatbot
+  newTag: 11
 
 patchesJSON6902:
 - target:
