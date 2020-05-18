@@ -1,9 +1,6 @@
 - op: replace
-  path: /spec/replicas
-  value: 1
-- op: replace
   path: /spec/template/spec/containers/0/name
-  value: chatbot-app
+  value: changeAppName-app
 - op: replace
   path: /spec/template/spec/containers/0/ports/0/containerPort
-  value: 3000
+  value: changeAppPort

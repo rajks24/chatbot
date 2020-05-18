@@ -1,6 +1,6 @@
 - op: replace
   path: /spec/rules/0/host
-  value: chatbot-app.mykube.com
+  value: changeAppDomainName
 - op: replace
   path: /spec/rules/0/http/paths/0/backend/servicePort
-  value: 3000
+  value: changeAppPort
