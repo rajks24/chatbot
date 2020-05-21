@@ -4,7 +4,6 @@ namespace: changeNameSpace
 namePrefix: changeAppName-
 commonLabels:
   app: changeAppName
-  appState: test
 resources:
 - service.yml
 - ingress.yml
@@ -12,7 +11,7 @@ resources:
 
 images:
 - name: appImage
-  newName: changeImageRegURL/changeImageRepo/changeAppName
+  newName: changeImageRegURL/changeImageRepo/changeAppImage
   newTag: "changeImageTag"
 
 patchesJSON6902:
