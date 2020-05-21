@@ -4,7 +4,7 @@ namespace: changeNameSpace
 namePrefix: changeAppName-
 commonLabels:
   app: changeAppName
-
+  appState: test
 resources:
 - service.yml
 - ingress.yml
