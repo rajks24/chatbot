@@ -1,0 +1,12 @@
+- op: replace
+  path: /spec/virtualhost/fqdn
+  value: changeAppDomainName
+- op: replace
+  path: /spec/routes/0/services/0/port
+  value: changeAppPort
+- op: replace
+  path: /spec/routes/1/services/0/port
+  value: changeAppPort
+- op: replace
+  path: /spec/routes/1/services/0/name
+  value: changeAppName

@@ -1,0 +1,20 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  labels:
+    app: changeAppName
+  name: app
+  namespace: sit
+spec:
+  virtualhost:
+    fqdn: myhost
+  routes:
+    - services:
+        - name: chatbot-app
+          port: 3000
+    - conditions:
+      - prefix: /socket/websocket
+      enableWebsockets: true # Setting this to true enables websocket for all paths that match /websocket
+      services:
+        - name: app
+          port: 3000

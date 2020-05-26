@@ -6,7 +6,7 @@ commonLabels:
   app: changeAppName
 resources:
 - service.yml
-- ingress.yml
+- httpProxy.yml
 - deployment.yml
 
 images:
@@ -28,8 +28,8 @@ patchesJSON6902:
     name: app
   path: service_patch.yml
 - target:
-    group: networking.k8s.io
-    version: v1beta1
-    kind: Ingress
+    group: projectcontour.io
+    version: v1
+    kind: HTTPProxy
     name: app
-  path: ingress_patch.yml
+  path: httpProxy_patch.yml
